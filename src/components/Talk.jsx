@@ -4,13 +4,11 @@ import axios from 'axios';
 
 const Talk = () => {
 
-
     const express = require('express');
     const bodyParser = require('body-parser');
     const axios = require('axios');
     
     const app = express();
-    const PORT = process.env.PORT || 3000;
     const TELEGRAM_BOT_TOKEN = '7156539137:AAGTyPWVBv2ENtrM7ZFowKWQDYqGNKnwnws';
     
     app.use(bodyParser.json());
@@ -20,7 +18,6 @@ const Talk = () => {
         const chatId = message.chat.id;
         const text = message.text;
     
-        // Здесь вы можете обрабатывать входящее сообщение и отправлять ответ
         axios.post(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
             chat_id: chatId,
             text: `You said: ${text}`
@@ -35,13 +32,11 @@ const Talk = () => {
         res.sendStatus(200);
     });
     
-    app.listen(PORT, () => {
-        console.log(`Server is running on port ${PORT}`);
-    });
+    module.exports = app;
+
+
+
     
-
-
-
     const [chat, setChat] = useState("");
     const [chatId, setChatId] = useState("");
 
